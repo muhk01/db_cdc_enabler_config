@@ -2,6 +2,7 @@
 Some Configuration to enable cdc from various databases
 
 # SQL Server
+Enable by Executing following Query.
 ```
 --use corresponding database
 USE db_name;
@@ -23,6 +24,17 @@ EXEC sys.sp_cdc_enable_table
 SELECT * FROM cdc.change_tables;
 ````
 
+# MYSQL 
+Enable Bin-log for MySQL
+```
+server-id         = 42
+log_bin           = mysql-bin
+binlog_format     = ROW
+expire_logs_days  = 10
+# define `binlog_row_image` for MySQL 5.6 or higher,
+# leave it out for earlier releases
+binlog_row_image  = FULL
+```
 # MYSQL (CloudSQL)
 
 Configurein CloudSQL with do checklist on "Enable Point in Time Recovery" to enable bin-log.
